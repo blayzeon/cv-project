@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
 
+function Input({prop}) {
+    return <input 
+                type="text" 
+                placeholder="" 
+                name="name"
+                onChange={prop}
+            />             
+}
+
 class Form extends Component {
     constructor() {
         super();
@@ -38,19 +47,9 @@ class Form extends Component {
     }
 
     render() {
-        const { current, toAdd } = this.state
         return (
             <form onSubmit={this.handleSubmit}>
-                <div>
-                    <h2>General</h2>
-                    <input 
-                        value={this.state.toAdd.name}
-                        type="text" 
-                        placeholder="" 
-                        name="name"
-                        onChange={this.handleChange}
-                    />
-                </div>
+                <Input prop={this.handleChange}/>
                 
                 <div>
                     <h2>Experience</h2>
