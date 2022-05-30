@@ -1,72 +1,71 @@
 import React, { Component } from 'react'
-import Fields from './Fields.js'
 
 class Form extends Component {
-    constructor(props) {
-        // super allows children to share properties of the parent
-        super(props); 
-
+    constructor() {
+        super();
         this.state = {
-            field: {
-                text: '',
-                id: '',
+            current: {
+                name: '',
+                company: '',
+                school: ''
             },
-            fields: this.props.props
-        }
-    }
-
-    // sets the state for onSubmitTask to load into the fields array
-    handleChange = (e) => {
-        this.setState({
-            field : {
-                text: e.target.value,
-                id: this.state.field.id,
+            toAdd: {
+                name: '',
+                company: '',
+                school: ''
             }
-        });
-    }
-    
-    // adds the current setState to the fields list and refreshes the default state
-    onSubmitTask = (e) => {
-        e.preventDefault();
-
-        const checkedElm = document.querySelector('input:checked');
-
-        if (checkedElm) {
-            const newTasks = [];
-            this.state.fields.forEach((field) => {
-                const taskToAdd = field;
-                if (field.id === checkedElm.id) {
-                    taskToAdd.text = this.state.field.text;
-                }
-
-                newTasks.push(taskToAdd);
-            });
-            this.setState({
-                fields: newTasks,
-                field: { 
-                    text: '',
-                },
-            });
-
         }
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const old = this.state.current;
+        const newItems = this.state.toAdd;
+        const updated = {...old, ...newItems}
+
+        this.setState({
+            current: updated
+        });
+
+        console.log(this.state.current);
+    }
+
+    handleChange = (e) => {
+        const newValue = e.target.value;
+        const updated = {name: newValue}
+        this.setState({toAdd: updated});
+        console.log(this.state.toAdd);
     }
 
     render() {
-        const { field } = this.state;
+        const { current, toAdd } = this.state
         return (
-            <div>
-                <form onSubmit={this.onSubmitTask}>
-                    <Fields fields={this.state.fields} />
-                    <label htmlFor="taskInput">Update Field: </label>
+            <form onSubmit={this.handleSubmit}>
+                <div>
+                    <h2>General</h2>
                     <input 
-                        onChange={this.handleChange} 
-                        value={field.text} 
+                        value={this.state.toAdd.name}
                         type="text" 
-                        id="taskInput" 
+                        placeholder="" 
+                        name="name"
+                        onChange={this.handleChange}
                     />
+                </div>
+                
+                <div>
+                    <h2>Experience</h2>
+                    <input type="text" placeholder="" />
+                </div>
+
+                <div>
+                    <h2>Education</h2>
+                    <input type="text" placeholder="" />
+                </div>
+                
+                <div>
                     <button type="submit">Submit</button>
-                </form>
-            </div>
+                </div>
+            </form>
         )
     }
 }
