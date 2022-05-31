@@ -1,10 +1,8 @@
-import React from 'react'
-import Form from './components/Form.js'
+import React from "react";
+import Cv from "./components/Cv.js";
 
 function App() {
-  return (
-    <Form />
-  );
+  return <Cv />;
 }
 
 export default App;
