@@ -7,7 +7,18 @@ class Cv extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    /* to add */
+    /* organize data */
+    let clean = {};
+    for (let key in this.state) {
+      const split = key.split("_");
+      if (clean[split[0]]) {
+        clean[split[0]].push(this.state[key]);
+      } else {
+        clean[split[0]] = [this.state[key]];
+      }
+    }
+
+    console.log(clean);
   };
 
   handleChange = (e) => {
@@ -20,44 +31,51 @@ class Cv extends Component {
   };
 
   render() {
+    const contact = [["Name", "Jane Doe"], "Email", "Phone"];
+    const experience = [
+      "Employer",
+      "Title",
+      ["Date", "5/30/21 - Current"],
+      ["Skills", "html, css, javascript"],
+    ];
+    const education = [
+      "School",
+      ["Degree", "Bachelor in Computer Science"],
+      "Location",
+    ];
+
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <h2>Contact</h2>
-          <FormInput
-            onChange={this.handleChange}
-            labels={["Name", "Email", "Phone"]}
-          />
-        </div>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <h2>Contact</h2>
+            <div>
+              <FormInput onChange={this.handleChange} labels={contact} />
+            </div>
+          </div>
 
-        <div>
-          <h2>Experience</h2>
-          <FormInput
-            onChange={this.handleChange}
-            labels={["Employer", "Title", "Date"]}
-          />
-          <MultiForm
-            onChange={this.handleChange}
-            labels={["Employer", "Title", "Date"]}
-          />
-        </div>
+          <div>
+            <h2>Experience</h2>
+            <div>
+              <FormInput onChange={this.handleChange} labels={experience} />
+            </div>
+            <MultiForm onChange={this.handleChange} labels={experience} />
+          </div>
 
-        <div>
-          <h2>Education</h2>
-          <FormInput
-            onChange={this.handleChange}
-            labels={["School", "Field", "Date"]}
-          />
-          <MultiForm
-            onChange={this.handleChange}
-            labels={["School", "Field", "Date"]}
-          />
-        </div>
+          <div>
+            <h2>Education</h2>
+            <div>
+              <FormInput onChange={this.handleChange} labels={education} />
+            </div>
+            <MultiForm onChange={this.handleChange} labels={education} />
+          </div>
 
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+          <div>
+            <button type="submit">Generate</button>
+          </div>
+        </form>
+        <div></div>
+      </div>
     );
   }
 }
