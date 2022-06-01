@@ -3,31 +3,27 @@ import FormInput from "./FormInput";
 import MultiForm from "./MultiForm";
 
 class Cv extends Component {
-  state = {};
+  state = { dirty: {}, clean: {} };
 
   handleSubmit = (e) => {
     e.preventDefault();
     /* organize data */
-    let clean = {};
-    for (let key in this.state) {
+    const clean = [];
+    let groups = {};
+    for (let key in this.state.dirty) {
       const split = key.split("_");
-      if (clean[split[0]]) {
-        clean[split[0]].push(this.state[key]);
-      } else {
-        clean[split[0]] = [this.state[key]];
-      }
+      console.log(split);
     }
-
-    console.log(clean);
   };
 
   handleChange = (e) => {
     const newValue = e.target.value;
     const label = e.target.name;
-    const updated = { [label]: newValue };
+    const updated = { ...this.state.dirty, [label]: newValue };
 
-    this.setState(updated);
-    console.log(this.state);
+    this.setState({
+      dirty: updated,
+    });
   };
 
   render() {
@@ -36,7 +32,7 @@ class Cv extends Component {
       "Employer",
       "Title",
       ["Date", "5/30/21 - Current"],
-      ["Skills", "html, css, javascript"],
+      ["Duties", "html, css, javascript"],
     ];
     const education = [
       "School",
@@ -74,7 +70,6 @@ class Cv extends Component {
             <button type="submit">Generate</button>
           </div>
         </form>
-        <div></div>
       </div>
     );
   }
