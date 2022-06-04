@@ -18,7 +18,7 @@ class Cv extends Component {
         "Ensured grass levels were at appropriate levels and produced fawn.",
     },
     Education: {
-      field: "Agricultural",
+      field: "Masters in Agriculture",
       year: "2020",
       school: "Forest and Pasture",
     },
@@ -41,17 +41,16 @@ class Cv extends Component {
     const inputs = Array.from(form.querySelectorAll("input"));
 
     const newState = this.state;
-    inputs.map((item) => {
-      if (item.value != "") {
-        if (newState.General[item.name]) {
-          newState.General[item.name] = item.value;
-        } else if (newState.Experience[item.name]) {
-          newState.Experience[item.name] = item.value;
-        } else if (newState.Education[item.name]) {
-          newState.Education[item.name] = item.value;
+    for (let key in newState) {
+      if (key === this.state.edit) continue;
+      inputs.map((item) => {
+        if (newState[key][item.name]) {
+          if (item.value !== "") {
+            return (newState[key][item.name] = item.value);
+          }
         }
-      }
-    });
+      });
+    }
 
     this.setState(newState);
     this.swapButtons();
