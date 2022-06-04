@@ -1,76 +1,81 @@
 import React, { Component } from "react";
-import FormInput from "./FormInput";
-import MultiForm from "./MultiForm";
+import FormSection from "./FormSection";
+import SmartButton from "./SmartButton";
 
 class Cv extends Component {
-  state = { dirty: {}, clean: {} };
+  state = {
+    edit: false,
+    General: {
+      name: "Jane Doe",
+      number: "555-333-4444",
+      email: "jane@doe.com",
+    },
+    Experience: {
+      title: "Chief Grazing Officer",
+      date: "2022 - Current",
+      company: "Doe Co.",
+      duties:
+        "Ensured grass levels were at appropriate levels and produced fawn.",
+    },
+    Education: {
+      field: "Agricultural",
+      year: "2020",
+      school: "Forest and Pasture",
+    },
+  };
 
-  handleSubmit = (e) => {
+  swapButtons = () => {
+    const newState = !this.state.edit;
+    this.setState({ edit: newState });
+  };
+
+  handleEdit = (e) => {
     e.preventDefault();
-    /* organize data */
-    const clean = [];
-    let groups = {};
-    for (let key in this.state.dirty) {
-      const split = key.split("_");
-      console.log(split);
-    }
+
+    this.swapButtons();
   };
 
-  handleChange = (e) => {
-    const newValue = e.target.value;
-    const label = e.target.name;
-    const updated = { ...this.state.dirty, [label]: newValue };
+  onSubmit = (e) => {
+    e.preventDefault();
+    const form = document.querySelector("#myForm");
+    const inputs = Array.from(form.querySelectorAll("input"));
 
-    this.setState({
-      dirty: updated,
+    const newState = this.state;
+    inputs.map((item) => {
+      if (item.value != "") {
+        if (newState.General[item.name]) {
+          newState.General[item.name] = item.value;
+        } else if (newState.Experience[item.name]) {
+          newState.Experience[item.name] = item.value;
+        } else if (newState.Education[item.name]) {
+          newState.Education[item.name] = item.value;
+        }
+      }
     });
+
+    this.setState(newState);
+    this.swapButtons();
   };
+
+  handleSave = () => {};
 
   render() {
-    const contact = [["Name", "Jane Doe"], "Email", "Phone"];
-    const experience = [
-      "Employer",
-      "Title",
-      ["Date", "5/30/21 - Current"],
-      ["Duties", "html, css, javascript"],
-    ];
-    const education = [
-      "School",
-      ["Degree", "Bachelor in Computer Science"],
-      "Location",
-    ];
+    const { edit, General, Experience, Education } = this.state;
 
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <h2>Contact</h2>
-            <div>
-              <FormInput onChange={this.handleChange} labels={contact} />
-            </div>
-          </div>
-
-          <div>
-            <h2>Experience</h2>
-            <div>
-              <FormInput onChange={this.handleChange} labels={experience} />
-            </div>
-            <MultiForm onChange={this.handleChange} labels={experience} />
-          </div>
-
-          <div>
-            <h2>Education</h2>
-            <div>
-              <FormInput onChange={this.handleChange} labels={education} />
-            </div>
-            <MultiForm onChange={this.handleChange} labels={education} />
-          </div>
-
-          <div>
-            <button type="submit">Generate</button>
-          </div>
-        </form>
-      </div>
+      <form id="myForm" onSubmit={this.onSubmit}>
+        <div>
+          <FormSection info={General} edit={edit} title="General" />
+          <FormSection info={Experience} edit={edit} title="Experience" />
+          <FormSection info={Education} edit={edit} title="Education" />
+        </div>
+        <SmartButton
+          bool={edit}
+          text={["Edit", "Submit"]}
+          events={[this.handleEdit, this.onSubmit]}
+          type={["button", "submit"]}
+        />
+      </form>
     );
   }
 }
