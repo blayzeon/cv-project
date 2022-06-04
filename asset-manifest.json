@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/cv-project/tree/gh-pages/static/js/main.c6b8556e.js",
-    "index.html": "/cv-project/tree/gh-pages/index.html",
-    "main.c6b8556e.js.map": "/cv-project/tree/gh-pages/static/js/main.c6b8556e.js.map"
+    "main.js": "/cv-project/static/js/main.c6b8556e.js",
+    "index.html": "/cv-project/index.html",
+    "main.c6b8556e.js.map": "/cv-project/static/js/main.c6b8556e.js.map"
   },
   "entrypoints": [
     "static/js/main.c6b8556e.js"
