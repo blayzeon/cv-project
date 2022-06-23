@@ -3,6 +3,15 @@ import CustomText from "./CustomText";
 import Ul from "./Ul";
 
 export default function Reference() {
+  const handlePrint = (e) => {
+    const button = e.target;
+    button.classList.add("display-none");
+    setTimeout(() => {
+      window.print();
+      button.classList.remove("display-none");
+    }, 500);
+  };
+
   return (
     <div id="cv-background">
       <div id="cv-container">
@@ -32,15 +41,17 @@ export default function Reference() {
           </div>
         </div>
         <div className="flex-container">
-          <div className="cv-general">
-            123 Your Street
-            <br />
-            Your City, ST 12345
-            <br />
+          <div className="cv-general padded">
             <strong>
-              123-456-7890
+              <CustomText
+                default={"(123) 456-7890"}
+                label={"your telephone number"}
+              />
               <br />
-              no_reply@example.com
+              <CustomText
+                default={"no_reply@example.com"}
+                label={"your email address"}
+              />
             </strong>
           </div>
           <div>
@@ -63,6 +74,9 @@ export default function Reference() {
           </div>
         </div>
       </div>
+      <button type="button" onClick={handlePrint}>
+        Print
+      </button>
     </div>
   );
 }
