@@ -4,141 +4,65 @@
 
 html,
 body,
+h1,
+h2,
+h3,
+h4,
 p {
   margin: 0;
   padding: 0;
 }
 
-form {
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+h3,
+li {
+  margin-bottom: 0.7rem;
+}
+
+#cv-background {
+  background: rgb(211, 211, 211);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#cv-container {
+  background-color: white;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 5rem;
+  padding: 2rem;
+  margin: 0.5rem;
+  border: 1px solid gray;
+  width: 210mm;
+  height: 297mm;
+}
+
+#cv-container ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.cv-general {
+  height: 6rem;
+}
+
+.cv-accent {
+  color: steelblue;
+}
+
+.cv-info {
+  color: rgb(71, 71, 71);
+}
+
+.flex-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem;
-}
-
-form > div {
-  width: 100%;
-}
-
-form > button {
-  width: 50%;
-  font-size: large;
-}
-
-h2 {
-  margin-left: 0.5rem;
-}
-
-form > div {
-  margin: 1rem;
-  border: 0.2rem solid black;
-}
-
-.section {
-  display: flex;
-  flex-direction: flex;
-}
-
-.section:first-child > h2 {
-  display: none;
-}
-
-#General,
-#Education,
-#Experience {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 1rem 5rem;
-}
-
-#General > div,
-#Education > div,
-#Experience > div {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-span {
-  text-transform: capitalize;
-}
-
-#General {
-  background-color: black;
-  color: white;
-  justify-content: center;
-}
-
-#General > div {
-  margin: 0rem 0.5rem;
-}
-
-#General > div:first-child {
-  display: flex;
-  justify-content: center;
-  min-width: 100%;
-}
-
-#General > div:first-child > span {
-  display: none;
-}
-
-#General > div:first-child > p {
-  font-size: xx-large;
-}
-
-#Education,
-#Experience {
-  justify-content: space-between;
-  padding: 4rem 1rem;
-}
-
-#Education > div > span,
-#Experience > div > span {
-  display: none;
-}
-
-#Education > div:nth-child(1),
-#Experience > div:nth-child(1) {
-  font-weight: bold;
-}
-
-#Education > div:nth-child(3),
-#Experience > div:nth-child(3) {
-  width: 100%;
-}
-
-#Education > div:nth-child(3) > span,
-#Experience > div:nth-child(3) > span {
-  display: block !important;
-}
-
-#Experience > div:nth-child(4) {
-  opacity: 0.7;
-  font-style: italic;
-}
-
-.editable {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-}
-
-.editable > label {
-  text-transform: capitalize;
-  width: max(25rem, 80%);
-  display: flex;
-  gap: 0.5rem;
-  justify-content: end;
-}
-
-input {
-  width: 60%;
-  margin-right: 2rem;
+  gap: 1rem;
 }

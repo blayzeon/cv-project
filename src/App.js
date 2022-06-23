@@ -1,8 +1,8 @@
 import React from "react";
-import Cv from "./components/Cv.js";
+import Reference from "./components/Reference.js";
 
 function App() {
-  return <Cv />;
+  return <Reference />;
 }
 
 export default App;
