@@ -23,6 +23,13 @@ li {
   margin-bottom: 0.7rem;
 }
 
+html,
+body,
+#cv-background {
+  height: 100vh;
+  min-width: 100vw;
+}
+
 #cv-background {
   background: rgb(211, 211, 211);
   display: flex;
@@ -39,9 +46,6 @@ li {
   padding: 2rem;
   margin: 0.5rem;
   border: 1px solid gray;
-  width: 210mm;
-  height: 260mm;
-  overflow: hidden;
 }
 
 #cv-container ul {
@@ -69,7 +73,7 @@ li {
 }
 
 .cv-general {
-  height: 6rem;
+  height: min(6rem, fit-content);
 }
 
 .cv-accent {
@@ -95,4 +99,10 @@ li {
 
 .display-none {
   display: none;
+}
+
+.paper-size {
+  width: 210mm;
+  height: 260mm;
+  overflow: hidden;
 }

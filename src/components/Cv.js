@@ -5,10 +5,14 @@ import Ul from "./Ul";
 export default function Reference() {
   const handlePrint = (e) => {
     const button = e.target;
+    const cv = document.querySelector("#cv-container");
     button.classList.add("display-none");
+    cv.classList.add("paper-size");
+
     window.print();
     setTimeout(() => {
       button.classList.remove("display-none");
+      cv.classList.remove("paper-size");
     }, 500);
   };
 
