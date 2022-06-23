@@ -6,8 +6,8 @@ export default function Reference() {
   const handlePrint = (e) => {
     const button = e.target;
     button.classList.add("display-none");
+    window.print();
     setTimeout(() => {
-      window.print();
       button.classList.remove("display-none");
     }, 500);
   };
