@@ -1,5 +1,5 @@
-* {
-  box-sizing: border-box;
+html * {
+  box-sizing: border-box !important;
 }
 
 html,
@@ -49,6 +49,19 @@ li {
   margin-bottom: 2rem;
 }
 
+.title-case {
+  text-transform: capitalize;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.cv-hover:hover {
+  color: orange;
+  cursor: pointer;
+}
+
 .cv-general {
   height: 6rem;
 }
@@ -59,6 +72,13 @@ li {
 
 .cv-info {
   color: rgb(71, 71, 71);
+}
+
+.cv-popup {
+  position: absolute;
+  background-color: white;
+  padding: 2rem 1rem;
+  border: 1px solid gray;
 }
 
 .flex-container {

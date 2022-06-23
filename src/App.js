@@ -1,8 +1,12 @@
-import React from "react";
-import Reference from "./components/Reference.js";
+import React, { useState } from "react";
+import Cv from "./components/Cv";
 
 function App() {
-  return <Reference />;
+  return (
+    <>
+      <Cv />
+    </>
+  );
 }
 
 export default App;
